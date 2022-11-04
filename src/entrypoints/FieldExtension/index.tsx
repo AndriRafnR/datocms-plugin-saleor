@@ -7,6 +7,7 @@ import ProductBlock from '../../components/ProductBlock'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import get from 'lodash-es/get';
 
 import s from './styles.module.css'
 
@@ -40,13 +41,13 @@ export default function FieldExtension({ ctx }: PropTypes) {
     if (result) {
       const selected = result.node
       setProduct(selected)
-      ctx.setFieldValue(ctx.fieldPath, result.node.id)
+      ctx.setFieldValue(ctx.fieldPath, selected.id)
     }
   }
 
   useEffect(() => {
-    const currentValue: string = (ctx.formValues[ctx.fieldPath] as string) || ''
-    if (currentValue !== '') {
+    const currentValue = get(ctx.formValues, ctx.fieldPath) as string | null;
+    if (currentValue && currentValue !== '') {
       const fetchData = async () => {
         await client
           .productMatching(currentValue)

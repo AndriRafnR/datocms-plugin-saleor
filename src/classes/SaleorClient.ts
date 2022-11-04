@@ -44,6 +44,7 @@ const productFragment = `
   slug
   variants {
     sku
+    name
   }
   media{
     url
@@ -57,6 +58,7 @@ const variantFragment = `
   sku
   product {
     name
+    slug
     id
   }
   media{

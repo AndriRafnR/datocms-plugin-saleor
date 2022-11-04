@@ -10,11 +10,11 @@ type PropTypes = {
 
 export default function ProductBlock({ product, selected }: PropTypes) {
   const getMedia = (media: Media[]) => {
-    const finded = media.find((media: Media) => media.type === 'IMAGE')
-    if (finded) {
+    const found = media.find((media: Media) => media.type === 'IMAGE')
+    if (found) {
       return (
         <div className={s['product__image']}>
-          <img alt='' src={finded.url} loading='lazy' width='150' />
+          <img alt='' src={found.url} loading='lazy' width='150' />
         </div>
       )
     }
